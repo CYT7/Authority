@@ -6,8 +6,8 @@ import java.util.Collection;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 自定义令牌对象
+ * @date  2021/5/22
+ * @describe 自定义令牌对象
  **/
 public class JwtAuthenticatioToken extends UsernamePasswordAuthenticationToken {
     private static final long serialVersionUID = 1L;
@@ -16,10 +16,7 @@ public class JwtAuthenticatioToken extends UsernamePasswordAuthenticationToken {
     public JwtAuthenticatioToken(Object principal, Object credentials){
         super(principal, credentials);
     }
-    public JwtAuthenticatioToken(Object principal, Object credentials, String token){
-        super(principal, credentials);
-        this.token = token;
-    }
+
     public JwtAuthenticatioToken(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities, String token) {
         super(principal, credentials, authorities);
         this.token = token;

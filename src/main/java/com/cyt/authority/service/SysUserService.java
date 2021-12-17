@@ -11,18 +11,22 @@ import java.util.Set;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 用户管理
+ * @date  2021/5/21
+ * @describe 用户管理
  **/
 public interface SysUserService extends CrudService<SysUser> {
 	SysUser findByName(String username);
 
 	SysUser createByName(String username);
-	//查找用户的菜单权限标识集合
+	/**查找用户的菜单权限标识集合*/
 	Set<String> findPermissions(String userName);
-	//查找用户的角色集合
+	/**查找用户的角色集合*/
 	List<SysUserRole> findUserRoles(Long userId);
-	//生成用户信息Excel文件
+	/**
+	 * 生成用户信息Excel文件
+	 * @param pageRequest
+	 * @return
+	 */
 	File createUserExcelFile(PageRequest pageRequest);
 
 }

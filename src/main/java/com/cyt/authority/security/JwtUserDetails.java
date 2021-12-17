@@ -8,15 +8,15 @@ import java.util.Collection;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 安全用户模型
+ * @date  2021/5/22
+ * @describe 安全用户模型
  **/
 public class JwtUserDetails implements UserDetails {
     private static final long serialVersionUID = 1L;
-    private String username;
-    private String password;
-    private String salt;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final String username;
+    private final String password;
+    private final String salt;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     JwtUserDetails(String username, String password, String salt, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;

@@ -5,9 +5,9 @@ import java.lang.reflect.Method;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/20/11:29
- * @version：1.0.0
- * @describe: 反射相关辅助方法
+ * @date  2021/5/20/11:29
+ * @version 1.0.0
+ * @describe 反射相关辅助方法
  **/
 public class ReflectionUtils {
     /**
@@ -18,16 +18,12 @@ public class ReflectionUtils {
      */
     public static Object invoke(Object object, String method, Object... args) {
         Object result = null;
-        Class<? extends Object> clazz = object.getClass();
+        Class<?> clazz = object.getClass();
         Method queryMethod = getMethod(clazz, method, args);
         if(queryMethod != null) {
             try {
                 result = queryMethod.invoke(object, args);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 e.printStackTrace();
             }
         } else {
@@ -41,11 +37,11 @@ public class ReflectionUtils {
     }
     /**
      * 根据方法名和参数对象查找方法
-     * @param clazz
-     * @param name
+     * @param clazz 参数对象
+     * @param name 方法名
      * @param args 参数实例数据
      */
-    public static Method getMethod(Class<? extends Object> clazz, String name, Object[] args) {
+    public static Method getMethod(Class<?> clazz, String name, Object[] args) {
         Method queryMethod = null;
         Method[] methods = clazz.getMethods();
         for(Method method:methods) {
@@ -54,12 +50,9 @@ public class ReflectionUtils {
                 if(parameterTypes.length == args.length) {
                     boolean isSameMethod = true;
                     for(int i=0; i<parameterTypes.length; i++) {
-                        Object arg = args[i];
-                        if(arg == null) {
-                            arg = "";
-                        }
-                        if(!parameterTypes[i].equals(args[i].getClass())) {
+                        if (!parameterTypes[i].equals(args[i].getClass())) {
                             isSameMethod = false;
+                            break;
                         }
                     }
                     if(isSameMethod) {

@@ -1,23 +1,22 @@
 package com.cyt.authority.utils;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/20/12:35
- * @version：1.0.0
- * @describe: 密码加密
+ * @date  2021/5/20/12:35
+ * @version 1.0.0
+ * @describe 密码加密
  **/
 public class PasswordEncoder {
 
-    private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+    private final static String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
             "e", "f" };
 
     private final static String MD5 = "MD5";
-    private final static String SHA = "SHA";
-
-    private Object salt;
-    private String algorithm;
+    private final Object salt;
+    private final String algorithm;
 
     public PasswordEncoder(Object salt) {
         this(salt, MD5);
@@ -26,14 +25,15 @@ public class PasswordEncoder {
         this.salt = salt;
         this.algorithm = algorithm;
     }
-    //密码加密
+    /**密码加密*/
     public String encode(String rawPass) {
         String result = null;
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
             //加密后的字符串
-            result = byteArrayToHexString(md.digest(mergePasswordAndSalt(rawPass).getBytes("utf-8")));
+            result = byteArrayToHexString(md.digest(mergePasswordAndSalt(rawPass).getBytes(StandardCharsets.UTF_8)));
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return result;
     }
@@ -42,11 +42,11 @@ public class PasswordEncoder {
      * @param encPass 密文
      * @param rawPass 明文
      */
-    public boolean matches(String encPass, String rawPass) {
+    public boolean passwordMatching(String encPass, String rawPass) {
         String pass1 = "" + encPass;
         String pass2 = encode(rawPass);
 
-        return pass1.equals(pass2);
+        return !pass1.equals(pass2);
     }
 
     private String mergePasswordAndSalt(String password) {
@@ -66,19 +66,20 @@ public class PasswordEncoder {
      * @return 16进制字串
      */
     private String byteArrayToHexString(byte[] b) {
-        StringBuffer resultSb = new StringBuffer();
-        for (int i = 0; i < b.length; i++) {
-            resultSb.append(byteToHexString(b[i]));
+        StringBuilder result = new StringBuilder();
+        for (byte value : b) {
+            result.append(byteToHexString(value));
         }
-        return resultSb.toString();
+        return result.toString();
     }
-    //将字节转换为16进制
+    /**将字节转换为16进制*/
     private static String byteToHexString(byte b) {
         int n = b;
-        if (n < 0)
+        if (n < 0) {
             n = 256 + n;
+        }
         int d1 = n / 16;
         int d2 = n % 16;
-        return hexDigits[d1] + hexDigits[d2];
+        return HEX_DIGITS[d1] + HEX_DIGITS[d2];
     }
 }

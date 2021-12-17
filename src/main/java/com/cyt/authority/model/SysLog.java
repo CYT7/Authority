@@ -1,5 +1,8 @@
 package com.cyt.authority.model;
-
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysLog extends BaseModel {
     private String userName;
     private String operation;

@@ -2,7 +2,6 @@ package com.cyt.authority.security;
 
 import com.cyt.authority.model.SysUser;
 import com.cyt.authority.service.SysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,13 +13,15 @@ import java.util.stream.Collectors;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 用户登录认证信息查询
+ * @date  2021/5/22
+ * @describe 用户登录认证信息查询
  **/
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    @Autowired
-    private SysUserService sysUserService;
+    private final SysUserService sysUserService;
+    public UserDetailsServiceImpl(SysUserService sysUserService) {
+        this.sysUserService = sysUserService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 登录日志控制器
+ * @date  2021/5/21
+ * @describe 登录日志控制器
  **/
 @RestController
 @RequestMapping("loginlog")

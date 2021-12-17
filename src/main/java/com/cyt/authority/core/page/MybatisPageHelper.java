@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe:MyBatis分页查询助手封装
+ * @ddte 2021/5/19
+ * @describe MyBatis分页查询助手封装
  **/
 public class MybatisPageHelper {
     public static final String findPage = "findPage";

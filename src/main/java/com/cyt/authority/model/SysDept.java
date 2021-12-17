@@ -1,17 +1,20 @@
 package com.cyt.authority.model;
 
 import java.util.List;
-
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysDept extends BaseModel {
     private String name;
     private Long parentId;
     private Integer orderNum;
     private Byte delFlag;
-    // 非数据库字段
+    /**非数据库字段*/
     private List<SysDept> children;
-    // 非数据库字段
+    /**非数据库字段*/
     private String parentName;
-    // 非数据库字段
+    /**非数据库字段*/
     private Integer level;
     
 	public String getName() {

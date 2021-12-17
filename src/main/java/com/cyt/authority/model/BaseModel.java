@@ -4,8 +4,8 @@ import java.util.Date;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/20
- * @describe: 基础模型
+ * @date  2021/5/20
+ * @describe 基础模型
  **/
 public class BaseModel {
 	private Long id;

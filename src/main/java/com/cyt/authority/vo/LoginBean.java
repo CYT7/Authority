@@ -2,9 +2,9 @@ package com.cyt.authority.vo;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22/10:34
- * @version：1.0.0
- * @describe:登录接口封装对象
+ * @date 2021/5/22/10:34
+ * @version 1.0.0
+ * @describe 登录接口封装对象
  **/
 public class LoginBean {
 

@@ -3,6 +3,10 @@ package com.cyt.authority.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysUser extends BaseModel {
 	private String name;
 	private String nickName;
@@ -14,11 +18,11 @@ public class SysUser extends BaseModel {
 	private Byte status;
 	private Long deptId;
 	private Byte delFlag;
-	// 非数据库字段
+	/**非数据库字段*/
     private String deptName;
-    // 非数据库字段
+    /**非数据库字段*/
     private String roleNames;
-    // 非数据库字段
+    /**非数据库字段*/
 
     private List<SysUserRole> userRoles = new ArrayList<>();
 	public String getName() {

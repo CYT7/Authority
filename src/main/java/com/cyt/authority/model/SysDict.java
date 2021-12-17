@@ -1,5 +1,8 @@
 package com.cyt.authority.model;
-
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysDict extends BaseModel {
     private String value;
     private String label;

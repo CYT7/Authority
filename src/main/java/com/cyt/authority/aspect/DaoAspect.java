@@ -16,17 +16,17 @@ import java.util.Date;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/26
- * @describe: DAO切面，插入创建人，创建时间，修改人，修改时间
+ * @date  2021/5/26
+ * @describe DAO切面，插入创建人，创建时间，修改人，修改时间
  **/
 @Aspect
 @Component
 @Configuration
 public class DaoAspect {
-    private static final String createBy = "createBy";
-    private static final String createTime = "createTime";
-    private static final String lastUpdateBy = "lastUpdateBy";
-    private static final String lastUpdateTime = "lastUpdateTime";
+    private static final String CREATE_BY = "createBy";
+    private static final String CREATE_TIME = "createTime";
+    private static final String LAST_UPDATE_BY = "lastUpdateBy";
+    private static final String LAST_UPDATE_TIME = "lastUpdateTime";
 
     @Pointcut("execution(* com.cyt.authority.dao.*.update*(..))")
     public void daoUpdate() {
@@ -49,13 +49,12 @@ public class DaoAspect {
             Object[] objects = pjp.getArgs();
             if (objects != null && objects.length > 0) {
                 for (Object arg : objects) {
-                    BeanUtils.setProperty(arg, lastUpdateBy, username);
-                    BeanUtils.setProperty(arg, lastUpdateTime, new Date());
+                    BeanUtils.setProperty(arg, LAST_UPDATE_BY, username);
+                    BeanUtils.setProperty(arg, LAST_UPDATE_TIME, new Date());
                 }
             }
         }
-        Object object = pjp.proceed();
-        return object;
+        return pjp.proceed();
     }
 
     @Around("daoCreate()")
@@ -69,17 +68,16 @@ public class DaoAspect {
             for (Object arg : objects) {
                 String username = getUserName();
                 if (username != null) {
-                    if (StringUtils.isBlank(BeanUtils.getProperty(arg, createBy))) {
-                        BeanUtils.setProperty(arg, createBy, username);
+                    if (StringUtils.isBlank(BeanUtils.getProperty(arg, CREATE_BY))) {
+                        BeanUtils.setProperty(arg, CREATE_BY, username);
                     }
-                    if (StringUtils.isBlank(BeanUtils.getProperty(arg, createTime))) {
-                        BeanUtils.setProperty(arg, createTime, new Date());
+                    if (StringUtils.isBlank(BeanUtils.getProperty(arg, CREATE_TIME))) {
+                        BeanUtils.setProperty(arg, CREATE_TIME, new Date());
                     }
                 }
             }
         }
-        Object object = pjp.proceed();
-        return object;
+        return pjp.proceed();
     }
 
     private String getUserName() {

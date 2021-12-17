@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 菜单控制器
+ * @date  2021/5/21
+ * @describe 菜单控制器
  **/
 @RestController
 @RequestMapping("menu")

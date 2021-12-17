@@ -72,7 +72,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 
 	@Override
 	public List<SysMenu> findByUser(String userName) {
-		if(userName == null || "".equals(userName) || SysConstants.ADMIN.equalsIgnoreCase(userName)) {
+		if(userName == null || "".equals(userName) || SysConstants.admin.equalsIgnoreCase(userName)) {
 			return sysMenuMapper.findAll();
 		}
 		return sysMenuMapper.findByUserName(userName);

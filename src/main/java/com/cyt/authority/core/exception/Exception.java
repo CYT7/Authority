@@ -2,8 +2,8 @@ package com.cyt.authority.core.exception;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe: 自定义异常封装
+ * @date  2021/5/19
+ * @describe 自定义异常封装
  **/
 public class Exception extends RuntimeException {
     private static final long serialVersionUID = 1L;

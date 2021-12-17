@@ -1,7 +1,10 @@
 package com.cyt.authority.model;
 
 import java.util.List;
-
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysMenu extends BaseModel {
     private Long parentId;
     private String name;
@@ -11,11 +14,11 @@ public class SysMenu extends BaseModel {
     private String icon;
     private Integer orderNum;
     private Byte delFlag;
-    // 非数据库字段
+    /**非数据库字段*/
     private String parentName;
-    // 非数据库字段
+    /**非数据库字段*/
     private Integer level;
-    // 非数据库字段
+    /**非数据库字段*/
     private List<SysMenu> children;
     
 	public Long getParentId() {

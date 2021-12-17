@@ -2,8 +2,8 @@ package com.cyt.authority.core.http;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe: 枚举HTTP状态码的常量。
+ * @date  2021/5/19
+ * @describe 枚举HTTP状态码的常量。
  **/
 public interface HttpStatus {
 

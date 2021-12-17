@@ -28,7 +28,7 @@ public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
         String presentedPassword = authentication.getCredentials().toString();
         String salt = ((JwtUserDetails) userDetails).getSalt();
         //覆写密码验证逻辑
-        if (!new PasswordEncoder(salt).matches(userDetails.getPassword(), presentedPassword)) {
+        if (new PasswordEncoder(salt).passwordMatching(userDetails.getPassword(), presentedPassword)) {
             logger.debug("身份验证失败：密码与存储值不匹配");
             throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "错误的凭据"));
         }

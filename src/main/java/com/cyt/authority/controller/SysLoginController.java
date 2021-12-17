@@ -5,8 +5,8 @@ import com.cyt.authority.model.SysUser;
 import com.cyt.authority.security.JwtAuthenticatioToken;
 import com.cyt.authority.service.SysLoginLogService;
 import com.cyt.authority.service.SysUserService;
-import com.cyt.authority.utils.IOUtils;
-import com.cyt.authority.utils.IPUtils;
+import com.cyt.authority.utils.IoUtils;
+import com.cyt.authority.utils.IpUtils;
 import com.cyt.authority.utils.PasswordUtils;
 import com.cyt.authority.utils.SecurityUtils;
 import com.cyt.authority.vo.LoginBean;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +27,8 @@ import java.io.IOException;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 登录控制器
+ * @date  2021/5/21
+ * @describe 登录控制器
  **/
 @RestController
 public class SysLoginController {
@@ -44,7 +43,7 @@ public class SysLoginController {
 	private AuthenticationManager authenticationManager;
 
 	@GetMapping("captcha.jpg")
-	public void captcha(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+	public void captcha(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		response.setHeader("Cache-Control", "no-store, no-cache");
 		response.setContentType("image/jpeg");
 		// 生成文字验证码
@@ -55,10 +54,10 @@ public class SysLoginController {
 		request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, text);
 		ServletOutputStream out = response.getOutputStream();
 		ImageIO.write(image, "jpg", out);
-		IOUtils.closeQuietly(out);
+		IoUtils.closeQuietly(out);
 	}
 
-	//登录接口
+	/**登录接口*/
 	@PostMapping(value = "/login")
 	public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest request) throws IOException {
 		String username = loginBean.getAccount();
@@ -74,7 +73,7 @@ public class SysLoginController {
 		if (user == null) {
 			return HttpResult.error("账号不存在");
 		}
-		if (!PasswordUtils.matches(user.getSalt(), password, user.getPassword())) {
+		if (PasswordUtils.matchPassword(user.getSalt(), password, user.getPassword())) {
 			return HttpResult.error("密码不正确");
 		}
 		//账号锁定
@@ -84,7 +83,7 @@ public class SysLoginController {
 		//系统登录认证
 		JwtAuthenticatioToken token = SecurityUtils.login(request, username, password, authenticationManager);
 		//记录登录日志
-		sysLoginLogService.writeLoginLog(username, IPUtils.getIpAddr(request));
+		sysLoginLogService.writeLoginLog(username, IpUtils.getIpAddr(request));
 		return HttpResult.ok(token);
 	}
 }

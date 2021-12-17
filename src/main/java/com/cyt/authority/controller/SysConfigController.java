@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 系统配置控制器
+ * @date  2021/5/21
+ * @describe 系统配置控制器
  **/
 @RestController
 @RequestMapping("config")

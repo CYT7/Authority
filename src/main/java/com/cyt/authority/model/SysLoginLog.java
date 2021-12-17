@@ -1,5 +1,8 @@
 package com.cyt.authority.model;
-
+/**
+ * @author Chenyt7
+ * @date  2021/5/20
+ **/
 public class SysLoginLog extends BaseModel {
 	public static final String STATUS_LOGIN = "login";
 	public static final String STATUS_LOGOUT = "logout";

@@ -6,17 +6,17 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe: 通用CRUD接口封装
+ * @date  2021/5/19
+ * @describe 通用CRUD接口封装
  **/
 public interface CrudService<T>{
-    //保存操作
+    /**保存操作*/
     int save(T record);
-    //删除操作
+    /**删除操作*/
     int delete(T record);
-    //批量删除操作
+    /**批量删除操作*/
     int delete(List<T> records);
-    //根据ID查询
+    /**根据ID查询*/
     T findById(Long id);
     /**
      * 分页查询

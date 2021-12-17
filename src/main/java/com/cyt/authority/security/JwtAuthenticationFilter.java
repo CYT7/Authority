@@ -12,8 +12,8 @@ import java.io.IOException;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 登录认证过滤器
+ * @date  2021/5/22
+ * @describe 登录认证过滤器
  **/
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 

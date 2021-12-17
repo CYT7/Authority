@@ -7,19 +7,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe: 跨域配置
+ * @date  2021/5/19
+ * @describe 跨域配置
  **/
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")//允许跨域访问的路径
-                .allowedOriginPatterns("*")//允许跨域访问的源
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")//允许请求方法
-                .maxAge(168000)//预检间隔时间
-                .allowedHeaders("*")//允许头部设置
-                .allowCredentials(true);//是否发送cookie
+        //允许跨域访问的路径 跨域访问的源 请求方法 预检间隔时间 头部设置 是否发送cookie
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .maxAge(168000)
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
     /**
      * 跨域配置后swagger2可能不能访问，需要增加如下配置

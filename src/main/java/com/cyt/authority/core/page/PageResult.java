@@ -4,19 +4,19 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe:分页返回结果封装
+ * @date  2021/5/19
+ * @describe 分页返回结果封装
  **/
 public class PageResult {
-    //当前页码
+    /**当前页码*/
     private int pageNum;
-    //每页数量
+    /**每页数量*/
     private int pageSize;
-    //记录总数
+    /**记录总数*/
     private long totalSize;
-    //页码总数
+    /**页码总数*/
     private int totalPages;
-    //分页数据
+    /**分页数据*/
     private List<?> content;
     public int getPageNum() {
         return pageNum;

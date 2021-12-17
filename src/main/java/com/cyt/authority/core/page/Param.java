@@ -2,8 +2,8 @@ package com.cyt.authority.core.page;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/26
- * @describe: 分页参数
+ * @date  2021/5/26
+ * @describe 分页参数
  **/
 public class Param {
     private String name;

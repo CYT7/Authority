@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cyt.authority.model.SysLog;
 import com.cyt.authority.service.SysLogService;
 import com.cyt.authority.utils.HttpUtils;
-import com.cyt.authority.utils.IPUtils;
+import com.cyt.authority.utils.IpUtils;
 import com.cyt.authority.utils.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/26
- * @describe:系统日志，切面处理类，记录日志
+ * @date  2021/5/26
+ * @describe 系统日志，切面处理类，记录日志
  **/
 @Aspect
 @Component
@@ -59,11 +59,12 @@ public class SysLogAspect {
             }
             sysLog.setParams(params);
         } catch (Exception e){
+            //ignore
         }
         //获取request
         HttpServletRequest request = HttpUtils.getHttpServletRequest();
         //设置IP地址
-        sysLog.setIp(IPUtils.getIpAddr(request));
+        sysLog.setIp(IpUtils.getIpAddr(request));
         //用户名
         sysLog.setUserName(userName);
         //执行时长(毫秒)

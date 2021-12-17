@@ -4,8 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 权限封装
+ * @date  2021/5/22
+ * @describe 权限封装
  **/
 public class GrantedAuthorityImpl implements GrantedAuthority {
     private static final long serialVersionUID = 1L;

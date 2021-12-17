@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/21
- * @describe: 用户控制器
+ * @date  2021/5/21
+ * @describe 用户控制器
  **/
 @RestController
 @RequestMapping("user")
@@ -27,7 +27,7 @@ public class SysUserController {
 	public HttpResult save(@RequestBody SysUser record) {
 		SysUser user = sysUserService.findById(record.getId());
 		if(user != null) {
-			if(SysConstants.ADMIN.equalsIgnoreCase(user.getName())) {
+			if(SysConstants.admin.equalsIgnoreCase(user.getName())) {
 				return HttpResult.error("超级管理员不允许修改!");
 			}
 		}
@@ -57,7 +57,7 @@ public class SysUserController {
 	public HttpResult delete(@RequestBody List<SysUser> records) {
 		for(SysUser record:records) {
 			SysUser sysUser = sysUserService.findById(record.getId());
-			if(sysUser != null && SysConstants.ADMIN.equalsIgnoreCase(sysUser.getName())) {
+			if(sysUser != null && SysConstants.admin.equalsIgnoreCase(sysUser.getName())) {
 				return HttpResult.error("超级管理员不允许删除!");
 			}
 		}
@@ -95,10 +95,10 @@ public class SysUserController {
 		if(user == null) {
 			HttpResult.error("用户不存在!");
 		}
-		if(SysConstants.ADMIN.equalsIgnoreCase(user.getName())) {
+		if(SysConstants.admin.equalsIgnoreCase(user.getName())) {
 			return HttpResult.error("超级管理员不允许修改!");
 		}
-		if(!PasswordUtils.matches(user.getSalt(), password, user.getPassword())) {
+		if(PasswordUtils.matchPassword(user.getSalt(), password, user.getPassword())) {
 			return HttpResult.error("原密码不正确!");
 		}
 		user.setPassword(PasswordUtils.encode(newPassword, user.getSalt()));

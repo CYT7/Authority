@@ -78,7 +78,7 @@ public class SysRoleServiceImpl  implements SysRoleService {
 	@Override
 	public List<SysMenu> findRoleMenus(Long roleId) {
 		SysRole sysRole = sysRoleMapper.selectByPrimaryKey(roleId);
-		if(SysConstants.ADMIN.equalsIgnoreCase(sysRole.getName())) {
+		if(SysConstants.admin.equalsIgnoreCase(sysRole.getName())) {
 			// 如果是超级管理员，返回全部
 			return sysMenuMapper.findAll();
 		}

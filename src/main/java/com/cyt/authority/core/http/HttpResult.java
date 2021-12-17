@@ -2,8 +2,8 @@ package com.cyt.authority.core.http;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19/21:22
- * @describe: HTTP结果封装
+ * @date  2021/5/19/21:22
+ * @describe HTTP结果封装
  **/
 public class HttpResult {
     private int code = 200;

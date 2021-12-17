@@ -5,15 +5,15 @@ import java.util.List;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe:分页请求封装
+ * @date  2021/5/19
+ * @describe 分页请求封装
  **/
 public class PageRequest {
-    //当前页码
+    /**当前页码*/
     private int pageNum = 1;
-    //每页数量
+    /**每页数量*/
     private int pageSize = 10;
-    //查询参数
+    /**查询参数*/
     private List<Param> params = new ArrayList<>();
 
     public void setParams(List<Param> params) {

@@ -8,8 +8,8 @@ import java.util.Properties;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: 验证码配置
+ * @date  2021/5/22
+ * @describe 验证码配置
  **/
 @Configuration
 public class KaptchaConfig {

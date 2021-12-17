@@ -14,25 +14,25 @@ import java.util.*;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22/10:10
- * @version：1.0.0
- * @describe: JWT工具类
+ * @date  2021/5/22/10:10
+ * @version 1.0.0
+ * @describe JWT工具类
  **/
 public class JwtTokenUtils implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    //用户名称
+    /**用户名称*/
     private static final String USERNAME = Claims.SUBJECT;
-    //创建时间
+    /**创建时间*/
     private static final String CREATED = "created";
-    //权限列表
+    /**权限列表*/
     private static final String AUTHORITIES = "authorities";
-    //密钥
-    private static final String SECRET = "abcdefgh";
-    //有效期12小时
+    /**密钥*/
+    private static final String SECRET = "a b c d e f g h";
+    /**有效期12小时*/
     private static final long EXPIRE_TIME = 12 * 60 * 60 * 1000;
 
-    //生成令牌
+    /**生成令牌*/
     public static String generateToken(Authentication authentication) {
         Map<String, Object> claims = new HashMap<>(3);
         claims.put(USERNAME, SecurityUtils.getUsername(authentication));
@@ -40,12 +40,12 @@ public class JwtTokenUtils implements Serializable {
         claims.put(AUTHORITIES, authentication.getAuthorities());
         return generateToken(claims);
     }
-    //从数据声明生成令牌
+    /**从数据声明生成令牌*/
     private static String generateToken(Map<String, Object> claims) {
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRE_TIME);
         return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
-    //从令牌中获取用户名
+    /**从令牌中获取用户名*/
     public static String getUsernameFromToken(String token) {
         String username;
         try {
@@ -56,7 +56,7 @@ public class JwtTokenUtils implements Serializable {
         }
         return username;
     }
-    //根据请求令牌获取登录认证信息
+    /**根据请求令牌获取登录认证信息*/
     public static Authentication getAuthenticationeFromToken(HttpServletRequest request) {
         Authentication authentication = null;
         // 获取请求携带的令牌
@@ -78,7 +78,7 @@ public class JwtTokenUtils implements Serializable {
                 }
                 Object authors = claims.get(AUTHORITIES);
                 List<GrantedAuthority> authorities = new ArrayList<>();
-                if (authors != null && authors instanceof List) {
+                if (authors instanceof List) {
                     for (Object object : (List) authors) {
                         authorities.add(new GrantedAuthorityImpl((String) ((Map) object).get("authority")));
                     }
@@ -93,7 +93,7 @@ public class JwtTokenUtils implements Serializable {
         }
         return authentication;
     }
-    //从令牌中获取数据声明
+    /**从令牌中获取数据声明*/
     private static Claims getClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -103,24 +103,13 @@ public class JwtTokenUtils implements Serializable {
         }
         return claims;
     }
-    //验证令牌
+    /**验证令牌*/
     public static Boolean validateToken(String token, String username) {
         String userName = getUsernameFromToken(token);
         return (userName.equals(username) && !isTokenExpired(token));
     }
-    //刷新令牌
-    public static String refreshToken(String token) {
-        String refreshedToken;
-        try {
-            Claims claims = getClaimsFromToken(token);
-            claims.put(CREATED, new Date());
-            refreshedToken = generateToken(claims);
-        } catch (Exception e) {
-            refreshedToken = null;
-        }
-        return refreshedToken;
-    }
-    //判断令牌是否过期
+
+    /**判断令牌是否过期*/
     public static Boolean isTokenExpired(String token) {
         try {
             Claims claims = getClaimsFromToken(token);
@@ -130,7 +119,7 @@ public class JwtTokenUtils implements Serializable {
             return false;
         }
     }
-    //获取请求token
+    /**获取请求token*/
     public static String getToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         String tokenHead = "Bearer ";

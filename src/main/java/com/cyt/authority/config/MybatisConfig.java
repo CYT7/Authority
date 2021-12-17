@@ -12,12 +12,11 @@ import javax.sql.DataSource;
 
 /**
  * @author Chenyt7
- * @Time 2021/5/19
- * @describe: Mybatis配置
+ * @date  2021/5/19
+ * @describe Mybatis配置
  **/
 @Configuration
-//扫描DAO
-@MapperScan("com.cyt.authority.dao")
+@MapperScan("com.cyt.authority.dao")/*扫描DAO*/
 public class MybatisConfig {
     @Autowired
     private DataSource dataSource;

@@ -19,12 +19,12 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 
 /**
  * @author Chenyt7
- * @Time 2021/5/22
- * @describe: Spring Security配置
+ * @date  2021/5/22
+ * @describe Spring Security配置
  **/
 @Configuration
-@EnableWebSecurity//开启Spring Security
-@EnableGlobalMethodSecurity(prePostEnabled = true)//开启权限注解，如：@PreAuthorize注解
+@EnableWebSecurity /*开启Spring Security*/
+@EnableGlobalMethodSecurity(prePostEnabled = true)/*开启权限注解，如：@PreAuthorize注解*/
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userDetailsServiceImpl")
     @Autowired
